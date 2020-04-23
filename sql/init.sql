@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS `todos`(
+  `id` INT AUTO_INCREMENT,
+  `name` VARCHAR(150) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
