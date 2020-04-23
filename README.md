@@ -1,3 +1,7 @@
+# Todo API
+
+A simple API following the hexagonal architecture pattern
+
 # How to execute it
 
 ```bash
@@ -6,7 +10,7 @@ $ docker-compose up # --build
 
 And go to ` http://localhost:8080`
 
-# TODO
+# To do
 
 * Not connect with root user to database.
 * In PROD environment, remove the volumes of the docker.
