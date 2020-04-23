@@ -1,0 +1,33 @@
+{
+    "name": "ricardo/todo-api",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Ricardo Morato Mateos",
+            "email": "ricardomoratomateos@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "TodoAPI\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TodoAPI\\Tests\\" : "tests/"
+        }
+    },
+    "require": {
+        "slim/slim": "^3",
+        "doctrine/dbal": "^2.9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7",
+        "phpunit/dbunit": "^4.0"
+    },
+    "scripts": {
+        "tests": "./scripts/test.sh",
+        "tests:unit": "./scripts/test.sh unit" ,
+        "tests:integration": "./scripts/test.sh integration" 
+    }
+}
