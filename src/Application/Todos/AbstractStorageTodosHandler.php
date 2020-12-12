@@ -6,7 +6,7 @@ use TodoAPI\Domain\Todos\ITodosStorage;
 abstract class AbstractStorageTodosHandler
 {
     /** @var ITodosStorage $storage */
-    private $storage;
+    protected $storage;
 
     public function __construct(ITodosStorage $storage)
     {
