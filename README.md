@@ -4,16 +4,36 @@ A simple API following the hexagonal/clean architecture pattern
 
 # How to execute it
 
+First of all, install dependencies
 ```bash
-$ docker-compose up # --build
+$ composer install
 ```
 
-And go to ` http://localhost:8080`
+Then, run (and build) the dockers
+```bash
+$ composer docker:run
+```
 
-# To do
+And finally, call to health endpoint. If not error is returned is because all works as expected
+```bash
+$ curl --location --request GET 'http://localhost:8080/health'
+```
 
-* Not connect with root user to database.
-* In PROD environment, remove the volumes of the docker.
+# How to execute tests
+
+First of all, install dependencies if them are not installed
+```bash
+$ composer install
+```
+
+Then, you can run all the tests or only the unit or integration tests
+```bash
+$ composer tests
+$ composer tests:unit
+$ composer tests:integration
+```
+
+# TODO
+
 * Handler interface
-* Do more tests because only sample of tests are doing
 * Exceptions and exception handlers
