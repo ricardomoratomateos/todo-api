@@ -1,18 +1,10 @@
 <?php
 namespace TodoAPI\Application\Todos\DeleteTodos;
 
-use TodoAPI\Domain\Todos\ITodosStorage;
+use TodoAPI\Application\Todos\AbstractStorageTodosHandler;
 
-class DeleteTodosHandler
+class DeleteTodosHandler extends AbstractStorageTodosHandler
 {
-    /** @var ITodosStorage $storage */
-    private $storage;
-
-    public function __construct(ITodosStorage $storage)
-    {
-        $this->storage = $storage;
-    }
-
     public function __invoke(DeleteTodosCommand $command): DeleteTodosResponse
     {
         $todos = $command->getTodos();

@@ -1,18 +1,10 @@
 <?php
 namespace TodoAPI\Application\Todos\CreateTodos;
 
-use TodoAPI\Domain\Todos\ITodosStorage;
+use TodoAPI\Application\Todos\AbstractStorageTodosHandler;
 
-class CreateTodosHandler
+class CreateTodosHandler extends AbstractStorageTodosHandler
 {
-    /** @var ITodosStorage $storage */
-    private $storage;
-
-    public function __construct(ITodosStorage $storage)
-    {
-        $this->storage = $storage;
-    }
-
     public function __invoke(CreateTodosCommand $command): CreateTodosResponse
     {
         $todos = $command->getTodos();
