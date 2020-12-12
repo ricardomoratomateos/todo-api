@@ -24,12 +24,20 @@ $container['repository-factory'] = function() use ($container) {
 };
 
 $container['storage-factory'] = function() use ($container) {
-  return new StorageFactory($container->get('connection'));
+    return new StorageFactory($container->get('connection'));
 };
 
 $container['handler-factory'] = function() use ($container) {
-  return new HandlerFactory(
-      $container->get('repository-factory'),
-      $container->get('storage-factory')
-  );
+    return new HandlerFactory(
+        $container->get('repository-factory'),
+        $container->get('storage-factory')
+    );
+};
+
+$container['errorHandler'] = function ($container) {
+    return function ($request, $response, $exception) use ($container) {
+        return $response
+            ->withStatus(500)
+            ->withHeader('Content-Type', 'text/html');
+    };
 };
