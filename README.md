@@ -1,6 +1,6 @@
 # Todo API
 
-A simple API following the hexagonal architecture pattern
+A simple API following the hexagonal/clean architecture pattern
 
 # How to execute it
 
