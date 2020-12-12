@@ -36,6 +36,13 @@ $container['handler-factory'] = function() use ($container) {
 
 $container['errorHandler'] = function ($container) {
     return function ($request, $response, $exception) use ($container) {
+        if (get_class($exception) === InvalidArgumentException::class) {
+            return $response
+                ->withStatus(500)
+                ->withHeader('Content-Type', 'text/html')
+                ->withJson(['error' => $exception->getMessage()]);
+        }
+
         return $response
             ->withStatus(500)
             ->withHeader('Content-Type', 'text/html');
