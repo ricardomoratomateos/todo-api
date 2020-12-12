@@ -26,6 +26,8 @@
         "phpunit/dbunit": "^4.0"
     },
     "scripts": {
+        "docker:build:run": "docker-compose up --build",
+        "docker:run": "docker-compose up",
         "tests": "./scripts/test.sh",
         "tests:unit": "./scripts/test.sh unit" ,
         "tests:integration": "./scripts/test.sh integration" 
