@@ -9,13 +9,11 @@ use TodoAPI\Infrastructure\Handlers\HandlerFactory;
 
 class ReadTodosController extends AbstractController
 {
-    const HANDLER = HandlerFactory::TODOS_READER;
-
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $command = new ReadTodosCommand();
 
-        $handler = $this->handler;
+        $handler = $this->handlerFactory->make(HandlerFactory::TODOS_READER);
         $handlerResponse = $handler($command);
 
         return $response->withStatus(200)->withJson($handlerResponse->getTodos());

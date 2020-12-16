@@ -10,8 +10,6 @@ use TodoAPI\Infrastructure\Handlers\HandlerFactory;
 
 class DeleteTodosController extends AbstractController
 {
-    const HANDLER = HandlerFactory::TODOS_DELETER;
-
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $todoId = $args['id'];
@@ -19,7 +17,7 @@ class DeleteTodosController extends AbstractController
         $todo = new Todo($todoId);
         $command = new DeleteTodosCommand([$todo]);
 
-        $handler = $this->handler;
+        $handler = $this->handlerFactory->make(HandlerFactory::TODOS_DELETER);
         $handler($command);
 
         return $response->withStatus(204);

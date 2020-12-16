@@ -6,15 +6,16 @@ use TodoAPI\Infrastructure\Handlers\HandlerFactory;
 
 abstract class AbstractController
 {
-    const HANDLER = '';
+    /** @var ContainerInterface $container */
+    protected $container;
 
-    /** @var $handler */
-    protected $handler;
+    /** @var HandlerFactory $handlerFactory */
+    protected $handlerFactory;
 
     public function __construct(ContainerInterface $container)
     {
         /** @var HandlerFactory $factory */
-        $factory = $container->get('handler-factory');
-        $this->handler = $factory->make($this::HANDLER);
+        $this->container = $container;
+        $this->handlerFactory = $container->get('handler-factory');
     }
 }

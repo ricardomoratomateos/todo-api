@@ -10,8 +10,6 @@ use TodoAPI\Infrastructure\Handlers\HandlerFactory;
 
 class UpdateTodosController extends AbstractController
 {
-    const HANDLER = HandlerFactory::TODOS_UPDATER;
-
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $body = $request->getParsedBody();
@@ -19,7 +17,7 @@ class UpdateTodosController extends AbstractController
         $todo = new Todo($args['id'], $body['name']);
         $command = new UpdateTodosCommand([$todo]);
 
-        $handler = $this->handler;
+        $handler = $this->handlerFactory->make(HandlerFactory::TODOS_UPDATER);
         $handler($command);
 
         return $response->withStatus(204);
