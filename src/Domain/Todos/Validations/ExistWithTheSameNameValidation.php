@@ -2,6 +2,7 @@
 namespace TodoAPI\Domain\Todos\Validations;
 
 use TodoAPI\Domain\Todos\Todo;
+use TodoAPI\Domain\Todos\Validations\Exceptions\ExistsTodoWithSameNameException;
 
 class ExistWithTheSameNameValidation extends AbstractTodosValidation
 {
@@ -15,8 +16,7 @@ class ExistWithTheSameNameValidation extends AbstractTodosValidation
         $todos = $this->repository->getByNames($names);
 
         if (!empty($todos)) {
-            // throw Exception
-            var_dump(1);
+            throw new ExistsTodoWithSameNameException();
         }
     }
 }

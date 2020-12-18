@@ -1,5 +1,6 @@
 <?php
 
+use TodoAPI\Domain\LogicException;
 use TodoAPI\Infrastructure\Handlers\HandlerFactory;
 use TodoAPI\Infrastructure\Repositories\RepositoryFactory;
 use TodoAPI\Infrastructure\Storages\StorageFactory;
@@ -41,6 +42,11 @@ $container['errorHandler'] = function ($container) {
                 ->withStatus(500)
                 ->withHeader('Content-Type', 'text/html')
                 ->withJson(['error' => $exception->getMessage()]);
+        } elseif (get_parent_class($exception) === LogicException::class) {
+          return $response
+              ->withStatus(500)
+              ->withHeader('Content-Type', 'text/html')
+              ->withJson($exception);
         }
 
         return $response

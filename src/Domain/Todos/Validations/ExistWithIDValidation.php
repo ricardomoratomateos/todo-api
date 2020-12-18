@@ -2,6 +2,7 @@
 namespace TodoAPI\Domain\Todos\Validations;
 
 use TodoAPI\Domain\Todos\Todo;
+use TodoAPI\Domain\Todos\Validations\Exceptions\TodoDoesNotExistException;
 
 class ExistWithIDValidation extends AbstractTodosValidation
 {
@@ -15,7 +16,7 @@ class ExistWithIDValidation extends AbstractTodosValidation
         $savedTodos = $this->repository->getByIDs($ids);
 
         if (count($todos) !== count($savedTodos)) {
-            // throw Exception
+            throw new TodoDoesNotExistException();
         }
     }
 }
