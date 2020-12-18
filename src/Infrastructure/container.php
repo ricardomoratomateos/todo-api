@@ -39,12 +39,12 @@ $container['errorHandler'] = function ($container) {
     return function ($request, $response, $exception) use ($container) {
         if (get_class($exception) === InvalidArgumentException::class) {
             return $response
-                ->withStatus(500)
+                ->withStatus(400)
                 ->withHeader('Content-Type', 'text/html')
                 ->withJson(['error' => $exception->getMessage()]);
         } elseif (get_parent_class($exception) === LogicException::class) {
           return $response
-              ->withStatus(500)
+              ->withStatus(400)
               ->withHeader('Content-Type', 'text/html')
               ->withJson($exception);
         }
