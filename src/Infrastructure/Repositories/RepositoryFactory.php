@@ -6,6 +6,7 @@ use Doctrine\DBAL\Connection;
 class RepositoryFactory
 {
     const TODOS_REPOSITORY = 'todos-repository';
+    const TODOS_VALIDATIONS_REPOSITORY = 'todos-validations-repository';
 
     /** @var Connection $connection */
     protected $connection;
@@ -24,6 +25,8 @@ class RepositoryFactory
         switch ($repository) {
             case self::TODOS_REPOSITORY:
                 return new MySQLTodosRepository($this->connection);
+            case self::TODOS_VALIDATIONS_REPOSITORY:
+                return new MySQLTodosValidatorRepository($this->connection);
             default:
                 // TODO: Throw exception
                 return;

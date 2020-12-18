@@ -1,12 +1,15 @@
 <?php
 namespace TodoAPI\Infrastructure\Handlers;
 
+use TodoAPI\Application\Todos\AbstractStorageTodosHandler;
 use TodoAPI\Application\Todos\CreateTodos\CreateTodosHandler;
 use TodoAPI\Application\Todos\DeleteTodos\DeleteTodosHandler;
 use TodoAPI\Application\Todos\ReadTodos\ReadTodosHandler;
 use TodoAPI\Application\Todos\UpdateTodos\UpdateTodosHandler;
 use TodoAPI\Domain\Todos\ITodosRepository;
 use TodoAPI\Domain\Todos\ITodosStorage;
+use TodoAPI\Domain\Todos\Validations\TodosValidationsBuilder;
+use TodoAPI\Domain\Todos\Validations\TodosValidatorRepositoryInterface;
 use TodoAPI\Infrastructure\Repositories\RepositoryFactory;
 use TodoAPI\Infrastructure\Storages\StorageFactory;
 
@@ -43,20 +46,25 @@ class HandlerFactory
                 $repository = $this->repositoryFactory->make(RepositoryFactory::TODOS_REPOSITORY);
                 return new ReadTodosHandler($repository);
             case self::TODOS_CREATOR:
-                /** @var ITodosStorage $storage */
-                $storage = $this->storageFactory->make(StorageFactory::TODOS_STORAGE);
-                return new CreateTodosHandler($storage);
+              return $this->buildStorageHandler(CreateTodosHandler::class);
             case self::TODOS_UPDATER:
-              /** @var ITodosStorage $storage */
-                $storage = $this->storageFactory->make(StorageFactory::TODOS_STORAGE);
-                return new UpdateTodosHandler($storage);
+              return $this->buildStorageHandler(UpdateTodosHandler::class);
             case self::TODOS_DELETER:
-              /** @var ITodosStorage $storage */
-                $storage = $this->storageFactory->make(StorageFactory::TODOS_STORAGE);
-                return new DeleteTodosHandler($storage);
+                return $this->buildStorageHandler(DeleteTodosHandler::class);
             default:
                 // TODO: Throw exception
                 return;
         }
+    }
+
+    private function buildStorageHandler(string $class): AbstractStorageTodosHandler
+    {
+      /** @var ITodosStorage $storage */
+      $storage = $this->storageFactory->make(StorageFactory::TODOS_STORAGE);
+      /** @var TodosValidatorRepositoryInterface $validatorRepository */
+      $validatorRepository = $this->repositoryFactory->make(RepositoryFactory::TODOS_VALIDATIONS_REPOSITORY);
+      $validationsBuilder = new TodosValidationsBuilder($validatorRepository);
+
+      return new $class($storage, $validationsBuilder);
     }
 }
