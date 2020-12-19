@@ -3,7 +3,7 @@ namespace TodoAPI\Tests\Unit\Application\Todos\ReadTodos;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use TodoAPI\Application\Todos\ReadTodos\ReadTodosCommand;
+use TodoAPI\Application\Todos\ReadTodos\ReadTodosQuery;
 use TodoAPI\Application\Todos\ReadTodos\ReadTodosHandler;
 use TodoAPI\Application\Todos\ReadTodos\ReadTodosResponse;
 use TodoAPI\Domain\Todos\TodosRepositoryInterface;
@@ -15,8 +15,8 @@ class ReadTodosHandlerTest extends TestCase
         /** @var TodosRepositoryInterface|MockObject $repository */
         $repository = $this->createMock(TodosRepositoryInterface::class);
         $repository->method('get')->willReturn([]);
-        /** @var ReadTodosCommand|MockObject $command */
-        $command = $this->createMock(ReadTodosCommand::class);
+        /** @var ReadTodosQuery|MockObject $command */
+        $command = $this->createMock(ReadTodosQuery::class);
 
         $handler = new ReadTodosHandler($repository);
 

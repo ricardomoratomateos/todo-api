@@ -13,7 +13,7 @@ class ReadTodosHandler
         $this->repository = $repository;
     }
 
-    public function __invoke(ReadTodosCommand $command): ReadTodosResponse
+    public function __invoke(ReadTodosQuery $command): ReadTodosResponse
     {
         $todos = $this->repository->get();
 
