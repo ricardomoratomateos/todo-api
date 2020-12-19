@@ -26,8 +26,10 @@
         "phpunit/dbunit": "^4.0"
     },
     "scripts": {
-        "docker:build:run": "docker-compose up --build",
-        "docker:run": "docker-compose up",
+        "docker:build": "./scripts/docker.sh docker:build",
+        "docker:run": "./scripts/docker.sh docker:run",
+        "docker:stop": "./scripts/docker.sh docker:stop",
+        "docker:destroy": "./scripts/docker.sh docker:destroy",
         "tests": "./scripts/test.sh",
         "tests:unit": "./scripts/test.sh unit" ,
         "tests:integration": "./scripts/test.sh integration" 

@@ -11,6 +11,7 @@ $ composer install
 
 Then, run (and build) the dockers
 ```bash
+$ composer docker:build
 $ composer docker:run
 ```
 
