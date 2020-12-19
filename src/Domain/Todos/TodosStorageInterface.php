@@ -1,7 +1,7 @@
 <?php
 namespace TodoAPI\Domain\Todos;
 
-interface ITodosStorage
+interface TodosStorageInterface
 {
     /**
      * @param Todo[] $todos

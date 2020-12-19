@@ -6,8 +6,8 @@ use TodoAPI\Application\Todos\CreateTodos\CreateTodosHandler;
 use TodoAPI\Application\Todos\DeleteTodos\DeleteTodosHandler;
 use TodoAPI\Application\Todos\ReadTodos\ReadTodosHandler;
 use TodoAPI\Application\Todos\UpdateTodos\UpdateTodosHandler;
-use TodoAPI\Domain\Todos\ITodosRepository;
-use TodoAPI\Domain\Todos\ITodosStorage;
+use TodoAPI\Domain\Todos\TodosRepositoryInterface;
+use TodoAPI\Domain\Todos\TodosStorageInterface;
 use TodoAPI\Domain\Todos\Validations\TodosValidationsBuilder;
 use TodoAPI\Domain\Todos\Validations\TodosValidatorRepositoryInterface;
 use TodoAPI\Infrastructure\Repositories\RepositoryFactory;
@@ -42,7 +42,7 @@ class HandlerFactory
     {
         switch ($handler) {
             case self::TODOS_READER:
-              /** @var ITodosRepository $repository */
+              /** @var TodosRepositoryInterface $repository */
                 $repository = $this->repositoryFactory->make(RepositoryFactory::TODOS_REPOSITORY);
                 return new ReadTodosHandler($repository);
             case self::TODOS_CREATOR:
@@ -59,7 +59,7 @@ class HandlerFactory
 
     private function buildStorageHandler(string $class): AbstractStorageTodosHandler
     {
-      /** @var ITodosStorage $storage */
+      /** @var TodosStorageInterface $storage */
       $storage = $this->storageFactory->make(StorageFactory::TODOS_STORAGE);
       /** @var TodosValidatorRepositoryInterface $validatorRepository */
       $validatorRepository = $this->repositoryFactory->make(RepositoryFactory::TODOS_VALIDATIONS_REPOSITORY);

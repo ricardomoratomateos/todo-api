@@ -2,10 +2,10 @@
 namespace TodoAPI\Infrastructure\Repositories;
 
 use Doctrine\DBAL\Connection;
-use TodoAPI\Domain\Todos\ITodosRepository;
+use TodoAPI\Domain\Todos\TodosRepositoryInterface;
 use TodoAPI\Domain\Todos\Todo;
 
-class MySQLTodosRepository implements ITodosRepository
+class MySQLTodosRepository implements TodosRepositoryInterface
 {
     /** @var Connection $connection */
     protected $connection;

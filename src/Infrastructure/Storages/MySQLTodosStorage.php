@@ -2,9 +2,9 @@
 namespace TodoAPI\Infrastructure\Storages;
 
 use Doctrine\DBAL\Connection;
-use TodoAPI\Domain\Todos\ITodosStorage;
+use TodoAPI\Domain\Todos\TodosStorageInterface;
 
-class MySQLTodosStorage implements ITodosStorage
+class MySQLTodosStorage implements TodosStorageInterface
 {
     /** @var Connection $connection */
     protected $connection;

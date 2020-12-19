@@ -1,19 +1,19 @@
 <?php
 namespace TodoAPI\Application\Todos;
 
-use TodoAPI\Domain\Todos\ITodosStorage;
+use TodoAPI\Domain\Todos\TodosStorageInterface;
 use TodoAPI\Domain\Todos\Validations\TodosValidationsBuilder;
 
 abstract class AbstractStorageTodosHandler
 {
-    /** @var ITodosStorage $storage */
+    /** @var TodosStorageInterface $storage */
     protected $storage;
 
     /** @var TodosValidationsBuilder $validationsBuilder */
     protected $validationsBuilder;
 
     public function __construct(
-        ITodosStorage $storage,
+        TodosStorageInterface $storage,
         TodosValidationsBuilder $validationsBuilder
     ) {
         $this->storage = $storage;

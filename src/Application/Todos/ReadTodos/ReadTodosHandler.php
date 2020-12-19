@@ -1,14 +1,14 @@
 <?php
 namespace TodoAPI\Application\Todos\ReadTodos;
 
-use TodoAPI\Domain\Todos\ITodosRepository;
+use TodoAPI\Domain\Todos\TodosRepositoryInterface;
 
 class ReadTodosHandler
 {
-    /** @var ITodosRepository $repository */
+    /** @var TodosRepositoryInterface $repository */
     private $repository;
 
-    public function __construct(ITodosRepository $repository)
+    public function __construct(TodosRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }

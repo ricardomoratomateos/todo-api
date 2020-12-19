@@ -11,7 +11,7 @@ use TodoAPI\Application\Todos\CreateTodos\CreateTodosHandler;
 use TodoAPI\Application\Todos\CreateTodos\CreateTodosResponse;
 use TodoAPI\Application\Todos\ReadTodos\ReadTodosHandler;
 use TodoAPI\Application\Todos\ReadTodos\ReadTodosResponse;
-use TodoAPI\Domain\Todos\ITodosRepository;
+use TodoAPI\Domain\Todos\TodosRepositoryInterface;
 use TodoAPI\Domain\Todos\Todo;
 use TodoAPI\Infrastructure\Controllers\Todos\ReadTodosController;
 use TodoAPI\Infrastructure\Handlers\HandlerFactory;

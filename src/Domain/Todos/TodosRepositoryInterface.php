@@ -1,7 +1,7 @@
 <?php
 namespace TodoAPI\Domain\Todos;
 
-interface ITodosRepository
+interface TodosRepositoryInterface
 {
     /**
      * @return Todo[]

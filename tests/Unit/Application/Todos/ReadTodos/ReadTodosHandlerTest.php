@@ -6,14 +6,14 @@ use PHPUnit\Framework\TestCase;
 use TodoAPI\Application\Todos\ReadTodos\ReadTodosCommand;
 use TodoAPI\Application\Todos\ReadTodos\ReadTodosHandler;
 use TodoAPI\Application\Todos\ReadTodos\ReadTodosResponse;
-use TodoAPI\Domain\Todos\ITodosRepository;
+use TodoAPI\Domain\Todos\TodosRepositoryInterface;
 
 class ReadTodosHandlerTest extends TestCase
 {
     public function testInvoke()
     {
-        /** @var ITodosRepository|MockObject $repository */
-        $repository = $this->createMock(ITodosRepository::class);
+        /** @var TodosRepositoryInterface|MockObject $repository */
+        $repository = $this->createMock(TodosRepositoryInterface::class);
         $repository->method('get')->willReturn([]);
         /** @var ReadTodosCommand|MockObject $command */
         $command = $this->createMock(ReadTodosCommand::class);
