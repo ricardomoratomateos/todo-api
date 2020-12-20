@@ -1,4 +1,5 @@
 <?php
+
 namespace TodoAPI\Infrastructure\Handlers;
 
 use TodoAPI\Application\Todos\AbstractStorageTodosHandler;
@@ -46,9 +47,9 @@ class HandlerFactory
                 $repository = $this->repositoryFactory->make(RepositoryFactory::TODOS_REPOSITORY);
                 return new ReadTodosHandler($repository);
             case self::TODOS_CREATOR:
-              return $this->buildStorageHandler(CreateTodosHandler::class);
+                return $this->buildStorageHandler(CreateTodosHandler::class);
             case self::TODOS_UPDATER:
-              return $this->buildStorageHandler(UpdateTodosHandler::class);
+                return $this->buildStorageHandler(UpdateTodosHandler::class);
             case self::TODOS_DELETER:
                 return $this->buildStorageHandler(DeleteTodosHandler::class);
             default:
@@ -60,11 +61,11 @@ class HandlerFactory
     private function buildStorageHandler(string $class): AbstractStorageTodosHandler
     {
       /** @var TodosStorageInterface $storage */
-      $storage = $this->storageFactory->make(StorageFactory::TODOS_STORAGE);
+        $storage = $this->storageFactory->make(StorageFactory::TODOS_STORAGE);
       /** @var TodosValidatorRepositoryInterface $validatorRepository */
-      $validatorRepository = $this->repositoryFactory->make(RepositoryFactory::TODOS_VALIDATIONS_REPOSITORY);
-      $validationsBuilder = new TodosValidationsBuilder($validatorRepository);
+        $validatorRepository = $this->repositoryFactory->make(RepositoryFactory::TODOS_VALIDATIONS_REPOSITORY);
+        $validationsBuilder = new TodosValidationsBuilder($validatorRepository);
 
-      return new $class($storage, $validationsBuilder);
+        return new $class($storage, $validationsBuilder);
     }
 }

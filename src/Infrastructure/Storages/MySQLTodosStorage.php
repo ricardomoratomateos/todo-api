@@ -1,4 +1,5 @@
 <?php
+
 namespace TodoAPI\Infrastructure\Storages;
 
 use Doctrine\DBAL\Connection;
@@ -70,7 +71,7 @@ class MySQLTodosStorage implements TodosStorageInterface
         $queryBuilder = $this->connection->createQueryBuilder();
         $queryBuilder
             ->delete('todos');
-        
+
         foreach ($todos as $index => $todo) {
             $queryBuilder
                 ->orWhere('id = ?')

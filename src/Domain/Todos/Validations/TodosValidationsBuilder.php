@@ -1,9 +1,10 @@
 <?php
+
 namespace TodoAPI\Domain\Todos\Validations;
 
 class TodosValidationsBuilder
 {
-    protected $repository; 
+    protected $repository;
 
     public function __construct(
         TodosValidatorRepositoryInterface $repository

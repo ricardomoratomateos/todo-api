@@ -1,4 +1,5 @@
 <?php
+
 namespace TodoAPI\Application\Todos\ReadTodos;
 
 use TodoAPI\Domain\Todos\Todo;

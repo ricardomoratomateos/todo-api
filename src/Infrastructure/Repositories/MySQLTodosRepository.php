@@ -1,4 +1,5 @@
 <?php
+
 namespace TodoAPI\Infrastructure\Repositories;
 
 use Doctrine\DBAL\Connection;
@@ -24,15 +25,15 @@ class MySQLTodosRepository implements TodosRepositoryInterface
         $queryBuilder
             ->select('id', 'name')
             ->from('todos');
-        
+
         $results = $queryBuilder
             ->execute()
             ->fetchAll();
-        
+
         return array_map(function ($todo) {
             return new Todo(
-              $todo['id'],
-              $todo['name']
+                $todo['id'],
+                $todo['name']
             );
         }, $results);
     }

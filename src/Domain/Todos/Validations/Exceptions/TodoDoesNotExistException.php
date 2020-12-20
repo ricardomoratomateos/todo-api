@@ -1,4 +1,5 @@
 <?php
+
 namespace TodoAPI\Domain\Todos\Validations\Exceptions;
 
 use TodoAPI\Domain\LogicException;

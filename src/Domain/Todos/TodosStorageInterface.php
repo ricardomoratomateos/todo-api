@@ -1,4 +1,5 @@
 <?php
+
 namespace TodoAPI\Domain\Todos;
 
 interface TodosStorageInterface

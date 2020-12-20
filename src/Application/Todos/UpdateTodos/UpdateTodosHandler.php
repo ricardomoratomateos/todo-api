@@ -1,4 +1,5 @@
 <?php
+
 namespace TodoAPI\Application\Todos\UpdateTodos;
 
 use TodoAPI\Application\Todos\AbstractStorageTodosHandler;
@@ -17,7 +18,7 @@ class UpdateTodosHandler extends AbstractStorageTodosHandler
         ];
 
         foreach ($validations as $validation) {
-           $validation($todos);
+            $validation($todos);
         }
 
         $numberOfUpdatedTodos = $this->storage->update($todos);

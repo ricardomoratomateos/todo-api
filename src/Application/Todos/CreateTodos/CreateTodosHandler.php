@@ -1,4 +1,5 @@
 <?php
+
 namespace TodoAPI\Application\Todos\CreateTodos;
 
 use TodoAPI\Application\Todos\AbstractStorageTodosHandler;
@@ -15,7 +16,7 @@ class CreateTodosHandler extends AbstractStorageTodosHandler
         ];
 
         foreach ($validations as $validation) {
-           $validation($todos);
+            $validation($todos);
         }
 
         $numberOfCreatedTodos = $this->storage->insert($todos);

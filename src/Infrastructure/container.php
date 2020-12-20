@@ -7,28 +7,28 @@ use TodoAPI\Infrastructure\Storages\StorageFactory;
 
 $container = $app->getContainer();
 
-$container['conf'] = function() {
+$container['conf'] = function () {
     $config = parse_ini_file(CONF_DIR . '/database.ini', true);
 
     return $config;
 };
 
-$container['connection'] = function() use ($container) {
+$container['connection'] = function () use ($container) {
     $params = $container->get('conf')['database-config'];
     $config = new \Doctrine\DBAL\Configuration();
 
     return \Doctrine\DBAL\DriverManager::getConnection($params, $config);
 };
 
-$container['repository-factory'] = function() use ($container) {
+$container['repository-factory'] = function () use ($container) {
     return new RepositoryFactory($container->get('connection'));
 };
 
-$container['storage-factory'] = function() use ($container) {
+$container['storage-factory'] = function () use ($container) {
     return new StorageFactory($container->get('connection'));
 };
 
-$container['handler-factory'] = function() use ($container) {
+$container['handler-factory'] = function () use ($container) {
     return new HandlerFactory(
         $container->get('repository-factory'),
         $container->get('storage-factory')
@@ -43,7 +43,7 @@ $container['errorHandler'] = function ($container) {
                 ->withHeader('Content-Type', 'text/html')
                 ->withJson(['error' => $exception->getMessage()]);
         } elseif (get_parent_class($exception) === LogicException::class) {
-          return $response
+            return $response
               ->withStatus(400)
               ->withHeader('Content-Type', 'text/html')
               ->withJson($exception);

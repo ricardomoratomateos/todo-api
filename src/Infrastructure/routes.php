@@ -1,6 +1,7 @@
 <?php
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
+
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 use TodoAPI\Infrastructure\Controllers;
 use TodoAPI\Infrastructure\Middlewares\IdValidator;
 use TodoAPI\Infrastructure\Middlewares\NameValidator;

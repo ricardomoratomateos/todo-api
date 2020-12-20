@@ -1,4 +1,5 @@
 <?php
+
 namespace TodoAPI\Application\Todos\DeleteTodos;
 
 use TodoAPI\Application\Todos\AbstractStorageTodosHandler;
@@ -15,7 +16,7 @@ class DeleteTodosHandler extends AbstractStorageTodosHandler
         ];
 
         foreach ($validations as $validation) {
-           $validation($todos);
+            $validation($todos);
         }
 
         $numberOfDeletedTodos = $this->storage->delete($todos);

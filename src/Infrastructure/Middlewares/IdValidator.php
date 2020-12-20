@@ -1,4 +1,5 @@
 <?php
+
 namespace TodoAPI\Infrastructure\Middlewares;
 
 use InvalidArgumentException;
@@ -8,9 +9,9 @@ use Psr\Http\Message\ServerRequestInterface;
 class IdValidator
 {
     public function __invoke(
-      ServerRequestInterface $request,
-      ResponseInterface $response,
-      $next
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        $next
     ): ResponseInterface {
         $route = $request->getAttribute('route');
         $id = $route->getArgument('id');

@@ -1,4 +1,5 @@
 <?php
+
 namespace TodoAPI\Infrastructure\Repositories;
 
 use Doctrine\DBAL\Connection;
@@ -34,11 +35,11 @@ class MySQLTodosValidatorRepository implements TodosValidatorRepositoryInterface
         $results = $queryBuilder
             ->execute()
             ->fetchAll();
-        
+
         return array_map(function ($todo) {
             return new Todo(
-              $todo['id'],
-              $todo['name']
+                $todo['id'],
+                $todo['name']
             );
         }, $results);
     }
@@ -58,15 +59,15 @@ class MySQLTodosValidatorRepository implements TodosValidatorRepositoryInterface
                 $names,
                 Connection::PARAM_STR_ARRAY
             );
-        
+
         $results = $queryBuilder
             ->execute()
             ->fetchAll();
-        
+
         return array_map(function ($todo) {
             return new Todo(
-              $todo['id'],
-              $todo['name']
+                $todo['id'],
+                $todo['name']
             );
         }, $results);
     }
