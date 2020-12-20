@@ -30,8 +30,9 @@
         "docker:run": "./scripts/docker.sh docker:run",
         "docker:stop": "./scripts/docker.sh docker:stop",
         "docker:destroy": "./scripts/docker.sh docker:destroy",
-        "tests": "./scripts/test.sh",
-        "tests:unit": "./scripts/test.sh unit" ,
-        "tests:integration": "./scripts/test.sh integration" 
+        "test": "./scripts/test.sh",
+        "test:unit": "./scripts/test.sh unit" ,
+        "test:integration": "./scripts/test.sh integration",
+        "test:coverage": "./scripts/test.sh coverage"
     }
 }

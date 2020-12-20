@@ -10,6 +10,9 @@ case "$1" in
     "integration")
         docker-compose -p 'todo-api-test' exec -T php ./vendor/bin/phpunit --testsuit integration
         ;;
+    "coverage")
+        docker-compose -p 'todo-api-test' exec -T php ./vendor/bin/phpunit --coverage-text
+        ;;
     *)
         docker-compose -p 'todo-api-test' exec -T php ./vendor/bin/phpunit
         ;;

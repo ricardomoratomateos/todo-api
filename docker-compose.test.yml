@@ -8,6 +8,7 @@ services:
     volumes:
         - .:/var/www/html:cached
         - ./docker/conf/php/www.conf:/usr/local/etc/php-fpm.d/www.conf:cached
+        - ./docker/conf/php/php.ini:$PHP_INI_DIR/php.ini:cached
     depends_on:
         - mysql
     links:
