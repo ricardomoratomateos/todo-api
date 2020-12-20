@@ -23,13 +23,16 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^7",
-        "phpunit/dbunit": "^4.0"
+        "phpunit/dbunit": "^4.0",
+        "squizlabs/php_codesniffer": "^3.5"
     },
     "scripts": {
         "docker:build": "./scripts/docker.sh docker:build",
         "docker:run": "./scripts/docker.sh docker:run",
         "docker:stop": "./scripts/docker.sh docker:stop",
         "docker:destroy": "./scripts/docker.sh docker:destroy",
+        "code:style": "./scripts/test.sh code:style",
+        "fix:code:style": "./scripts/test.sh fix:code:style",
         "test": "./scripts/test.sh",
         "test:unit": "./scripts/test.sh unit" ,
         "test:integration": "./scripts/test.sh integration",
