@@ -29,12 +29,17 @@ $ composer install
 
 Then, you can run all the tests or only the unit or integration tests
 ```bash
-$ composer tests
-$ composer tests:unit
-$ composer tests:integration
+$ composer test
+$ composer test:unit
+$ composer test:integration
 ```
 
+# How to stop the API
+
+```bash
+$ composer docker:stop
+$ composer docker:destroy
+```
 # TODO
 
 * Handler interface
-* Exceptions and exception handlers
