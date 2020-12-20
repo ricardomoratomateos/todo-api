@@ -9,6 +9,8 @@ First of all, install dependencies
 $ composer install
 ```
 
+Open and fill the .env file. By default, the API uses the port 8080. If you want to use another port, only change it. 
+
 Then, run (and build) the dockers
 ```bash
 $ composer docker:build

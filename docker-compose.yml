@@ -5,7 +5,7 @@ services:
         context: .
         dockerfile: ./docker/nginx/Dockerfile
     ports:
-        - "8080:80"
+        - "$PROJECT_PORT:80"
     volumes:
         - .:/app:cached
         - ./docker/conf/nginx/site.conf:/etc/nginx/conf.d/default.conf:cached
