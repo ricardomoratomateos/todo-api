@@ -2,11 +2,11 @@
 
 namespace TodoAPI\Infrastructure\Handlers;
 
-use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Throwable;
 use TodoAPI\Domain\LogicException;
+use TodoAPI\Infrastructure\Middlewares\Exceptions\InvalidArgumentException;
 
 class ErrorHandler
 {
@@ -15,12 +15,11 @@ class ErrorHandler
         ResponseInterface $response,
         Throwable $exception
     ): ResponseInterface {
-        if (get_class($exception) === InvalidArgumentException::class) {
-            return $response
-                ->withStatus(400)
-                ->withHeader('Content-Type', 'text/html')
-                ->withJson(['error' => $exception->getMessage()]);
-        } elseif (get_parent_class($exception) === LogicException::class) {
+        $class = get_parent_class($exception);
+        if (
+            $class === InvalidArgumentException::class ||
+            $class === LogicException::class
+        ) {
             return $response
                 ->withStatus(400)
                 ->withHeader('Content-Type', 'text/html')

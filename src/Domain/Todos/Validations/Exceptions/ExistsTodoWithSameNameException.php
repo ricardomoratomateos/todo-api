@@ -6,5 +6,6 @@ use TodoAPI\Domain\LogicException;
 
 class ExistsTodoWithSameNameException extends LogicException
 {
-    const CODE = 1;
+    const CODE = 10001;
+    const MESSAGE = 'Exists a TODO with the same name.';
 }

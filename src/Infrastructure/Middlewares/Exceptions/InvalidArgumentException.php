@@ -1,11 +1,11 @@
 <?php
 
-namespace TodoAPI\Domain;
+namespace TodoAPI\Infrastructure\Middlewares\Exceptions;
 
+use InvalidArgumentException as GlobalInvalidArgumentException;
 use JsonSerializable;
-use LogicException as GlobalLogicException;
 
-class LogicException extends GlobalLogicException implements JsonSerializable
+class InvalidArgumentException extends GlobalInvalidArgumentException implements JsonSerializable
 {
     const CODE = 0;
     const MESSAGE = '';

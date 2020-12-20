@@ -6,5 +6,6 @@ use TodoAPI\Domain\LogicException;
 
 class TodoDoesNotExistException extends LogicException
 {
-    const CODE = 2;
+    const CODE = 10002;
+    const MESSAGE = 'TODO does not exist.';
 }

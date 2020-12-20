@@ -5,6 +5,8 @@ namespace TodoAPI\Infrastructure\Middlewares;
 use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use TodoAPI\Infrastructure\Middlewares\Exceptions\IdIsRequiredException;
+use TodoAPI\Infrastructure\Middlewares\Exceptions\IdShouldBeAnIntegerException;
 
 class IdValidator
 {
@@ -17,10 +19,10 @@ class IdValidator
         $id = $route->getArgument('id');
 
         if (!isset($id)) {
-            throw new InvalidArgumentException("'id' param is required");
+            throw new IdIsRequiredException();
         }
         if (!is_numeric($id)) {
-            throw new InvalidArgumentException("'id' param should be an integer");
+            throw new IdShouldBeAnIntegerException();
         }
 
         return $next($request, $response);

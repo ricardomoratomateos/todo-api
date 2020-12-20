@@ -5,6 +5,7 @@ namespace TodoAPI\Infrastructure\Middlewares;
 use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use TodoAPI\Infrastructure\Middlewares\Exceptions\NameIsRequiredException;
 
 class NameValidator
 {
@@ -15,7 +16,7 @@ class NameValidator
     ): ResponseInterface {
         $body = $request->getParsedBody();
         if (!isset($body['name'])) {
-            throw new InvalidArgumentException("'name' param is required");
+            throw new NameIsRequiredException();
         }
 
         return $next($request, $response);
