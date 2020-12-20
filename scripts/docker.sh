@@ -5,16 +5,16 @@ SCRIPT_DIR="$(dirname "$(which "$0")")"
 cd ${SCRIPT_DIR}/../
 case $1 in
     docker:run)
-        ./docker/scripts/runContainer.sh
+        ./docker/scripts/run.sh
         ;;
     docker:build)
-        ./docker/scripts/buildImage.sh
+        ./docker/scripts/build.sh
         ;;
     docker:destroy)
-        ./docker/scripts/destroyContainer.sh
+        ./docker/scripts/destroy.sh
         ;;
     docker:stop)
-        ./docker/scripts/stopContainer.sh
+        ./docker/scripts/stop.sh
         ;;
     *)
         echo "ERROR: Command not found"
