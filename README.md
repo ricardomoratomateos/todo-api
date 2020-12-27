@@ -34,6 +34,7 @@ Then, you can run all the tests or only the unit or integration tests
 $ composer test
 $ composer test:unit
 $ composer test:integration
+$ composer test:coverage
 ```
 
 # How to stop the API
@@ -42,6 +43,3 @@ $ composer test:integration
 $ composer docker:stop
 $ composer docker:destroy
 ```
-# TODO
-
-* Handler interface
