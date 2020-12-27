@@ -4,19 +4,16 @@ namespace TodoAPI\Application\Todos\UpdateTodo;
 
 class UpdateTodoResponse
 {
-    /** @var int $numberOfUpdatedTodos */
-    private $numberOfUpdatedTodos;
+    /** @var bool $wasUpdated */
+    private $wasUpdated;
 
-    /**
-     * @param int $numberOfUpdatedTodos
-     */
-    public function __construct(int $numberOfUpdatedTodos)
+    public function __construct(bool $wasUpdated)
     {
-        $this->numberOfUpdatedTodos = $numberOfUpdatedTodos;
+        $this->wasUpdated = $wasUpdated;
     }
 
-    public function numberOfUpdatedTodos(): int
+    public function wasUpdated(): bool
     {
-        return $this->numberOfUpdatedTodos;
+        return $this->wasUpdated;
     }
 }

@@ -4,19 +4,16 @@ namespace TodoAPI\Application\Todos\CreateTodo;
 
 class CreateTodoResponse
 {
-    /** @var int $numberOfCreatedTodos */
-    private $numberOfCreatedTodos;
+    /** @var bool $wasCreated */
+    private $wasCreated;
 
-    /**
-     * @param int $numberOfCreatedTodos
-     */
-    public function __construct(int $numberOfCreatedTodos)
+    public function __construct(bool $wasCreated)
     {
-        $this->numberOfCreatedTodos = $numberOfCreatedTodos;
+        $this->wasCreated = $wasCreated;
     }
 
-    public function numberOfCreatedTodos(): int
+    public function wasCreated(): bool
     {
-        return $this->numberOfCreatedTodos;
+        return $this->wasCreated;
     }
 }

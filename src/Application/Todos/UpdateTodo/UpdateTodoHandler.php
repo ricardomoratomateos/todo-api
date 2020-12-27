@@ -17,6 +17,6 @@ class UpdateTodoHandler extends AbstractWriterTodosHandler
             $command->getName()
         );
 
-        return new UpdateTodoResponse(1);
+        return new UpdateTodoResponse(true);
     }
 }

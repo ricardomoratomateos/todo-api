@@ -14,6 +14,6 @@ class DeleteTodoHandler extends AbstractWriterTodosHandler
 
         $service($command->getId());
 
-        return new DeleteTodoResponse(1);
+        return new DeleteTodoResponse(true);
     }
 }

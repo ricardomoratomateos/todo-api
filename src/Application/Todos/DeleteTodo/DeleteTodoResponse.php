@@ -4,19 +4,16 @@ namespace TodoAPI\Application\Todos\DeleteTodo;
 
 class DeleteTodoResponse
 {
-    /** @var int $numberOfDeletedTodos */
-    private $numberOfDeletedTodos;
+    /** @var bool $wasDeleted */
+    private $wasDeleted;
 
-    /**
-     * @param int $numberOfDeletedTodos
-     */
-    public function __construct(int $numberOfDeletedTodos)
+    public function __construct(bool $wasDeleted)
     {
-        $this->numberOfDeletedTodos = $numberOfDeletedTodos;
+        $this->wasDeleted = $wasDeleted;
     }
 
-    public function numberOfDeletedTodos(): int
+    public function wasDeleted(): bool
     {
-        return $this->numberOfDeletedTodos;
+        return $this->wasDeleted;
     }
 }

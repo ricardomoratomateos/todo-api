@@ -14,6 +14,6 @@ class CreateTodoHandler extends AbstractWriterTodosHandler
 
         $service($command->getName());
 
-        return new CreateTodoResponse(1);
+        return new CreateTodoResponse(true);
     }
 }
