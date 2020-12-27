@@ -19,6 +19,6 @@ class RemoveTodoService extends AbstractTodoService
 
         $this->storage->delete([$todo]);
 
-        EventHandler::handle(new TodoWasDeleted);
+        EventHandler::handle(new TodoWasDeleted());
     }
 }

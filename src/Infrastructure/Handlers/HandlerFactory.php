@@ -63,7 +63,7 @@ class HandlerFactory
         $storage = $this->storageFactory->make(StorageFactory::TODOS_STORAGE);
         /** @var TodosRepositoryInterface $repository */
         $repository = $this->repositoryFactory->make(RepositoryFactory::TODOS_REPOSITORY);
-        
+
         $serviceFactory = new TodoServiceFactory(
             $repository,
             $storage

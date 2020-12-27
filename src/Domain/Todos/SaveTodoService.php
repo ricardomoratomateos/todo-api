@@ -19,6 +19,6 @@ class SaveTodoService extends AbstractTodoService
 
         $this->storage->insert([new Todo(null, $name)]);
 
-        EventHandler::handle(new TodoWasCreated);
+        EventHandler::handle(new TodoWasCreated());
     }
 }

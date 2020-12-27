@@ -26,6 +26,6 @@ class EditTodoService extends AbstractTodoService
 
         $this->storage->update([new Todo($id, $name)]);
 
-        EventHandler::handle(new TodoWasEdited);
+        EventHandler::handle(new TodoWasEdited());
     }
 }
