@@ -2,6 +2,7 @@
 
 namespace TodoAPI\Domain\Todos;
 
+use TodoAPI\Domain\EventHandler;
 use TodoAPI\Domain\Todos\Validations\Exceptions\ExistsTodoWithSameNameException;
 use TodoAPI\Domain\Todos\Validations\Exceptions\TodoDoesNotExistException;
 
@@ -24,5 +25,7 @@ class EditTodoService extends AbstractTodoService
         }
 
         $this->storage->update([new Todo($id, $name)]);
+
+        EventHandler::handle(new TodoWasEdited);
     }
 }

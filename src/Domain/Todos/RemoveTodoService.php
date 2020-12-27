@@ -2,6 +2,7 @@
 
 namespace TodoAPI\Domain\Todos;
 
+use TodoAPI\Domain\EventHandler;
 use TodoAPI\Domain\Todos\Validations\Exceptions\TodoDoesNotExistException;
 
 class RemoveTodoService extends AbstractTodoService
@@ -17,5 +18,7 @@ class RemoveTodoService extends AbstractTodoService
         }
 
         $this->storage->delete([$todo]);
+
+        EventHandler::handle(new TodoWasDeleted);
     }
 }

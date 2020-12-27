@@ -2,6 +2,7 @@
 
 namespace TodoAPI\Domain\Todos;
 
+use TodoAPI\Domain\EventHandler;
 use TodoAPI\Domain\Todos\Validations\Exceptions\ExistsTodoWithSameNameException;
 
 class SaveTodoService extends AbstractTodoService
@@ -17,5 +18,7 @@ class SaveTodoService extends AbstractTodoService
         }
 
         $this->storage->insert([new Todo(null, $name)]);
+
+        EventHandler::handle(new TodoWasCreated);
     }
 }

@@ -1,4 +1,8 @@
 <?php
+
+use TodoAPI\Domain\EventHandler;
+use TodoAPI\Infrastructure\Logger\InMemoryLogger;
+
 require __DIR__ . '/vendor/autoload.php';
 
 $configuration = [
@@ -7,6 +11,7 @@ $configuration = [
     ],
 ];
 
+$eventHandler = EventHandler::setLogger(new InMemoryLogger());
 $app = new \Slim\App($configuration);
 
 require __DIR__ . '/src/Infrastructure/constants.php';
