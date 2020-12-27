@@ -26,8 +26,6 @@ class RepositoryFactory
         switch ($repository) {
             case self::TODOS_REPOSITORY:
                 return new MySQLTodosRepository($this->connection);
-            case self::TODOS_VALIDATIONS_REPOSITORY:
-                return new MySQLTodosValidatorRepository($this->connection);
             default:
                 // TODO: Throw exception
                 return;
