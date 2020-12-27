@@ -24,7 +24,10 @@ class StorageFactory
     {
         switch ($storage) {
             case self::TODOS_STORAGE:
-                return new MySQLTodosStorage($this->connection);
+                return new MySQLTodosStorage(
+                    $this->connection,
+                    new InMemoryTodosStorage()
+                );
             default:
                 // TODO: Throw exception
                 return;

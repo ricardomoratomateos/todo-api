@@ -8,11 +8,17 @@ use TodoAPI\Domain\Todos\TodosStorageInterface;
 class MySQLTodosStorage implements TodosStorageInterface
 {
     /** @var Connection $connection */
-    protected $connection;
+    private $connection;
 
-    public function __construct(Connection $connection)
-    {
+    /** @var TodosStorageInterface $storage */
+    private $storage;
+
+    public function __construct(
+        Connection $connection,
+        TodosStorageInterface $storage = null
+    ) {
         $this->connection = $connection;
+        $this->storage = $storage;
     }
 
     /**
@@ -34,6 +40,10 @@ class MySQLTodosStorage implements TodosStorageInterface
                 ->setParameter(0, $todo->getName());
 
             $count += $clonedQueryBuilder->execute();
+        }
+
+        if ($this->storage) {
+            return $this->storage->insert($todos);
         }
 
         return $count;
@@ -60,6 +70,10 @@ class MySQLTodosStorage implements TodosStorageInterface
             $count += $clonedQueryBuilder->execute();
         }
 
+        if ($this->storage) {
+            return $this->storage->update($todos);
+        }
+
         return $count;
     }
 
@@ -76,6 +90,10 @@ class MySQLTodosStorage implements TodosStorageInterface
             $queryBuilder
                 ->orWhere('id = ?')
                 ->setParameter($index, $todo->getId());
+        }
+
+        if ($this->storage) {
+            return $this->storage->delete($todos);
         }
 
         return $queryBuilder->execute();

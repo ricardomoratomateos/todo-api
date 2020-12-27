@@ -12,9 +12,15 @@ class MySQLTodosRepository implements TodosRepositoryInterface
     /** @var Connection $connection */
     protected $connection;
 
-    public function __construct(Connection $connection)
-    {
+    /** @var TodosRepositoryInterface $repository */
+    private $repository;
+
+    public function __construct(
+        Connection $connection,
+        TodosRepositoryInterface $repository = null
+    ) {
         $this->connection = $connection;
+        $this->repository = $repository;
     }
 
     /**
@@ -22,6 +28,10 @@ class MySQLTodosRepository implements TodosRepositoryInterface
      */
     public function get(): array
     {
+        if ($this->repository && $this->repository->get()) {
+            return $this->repository->get();
+        }
+
         $queryBuilder = $this->connection->createQueryBuilder();
         $queryBuilder
             ->select('id', 'name')
@@ -44,6 +54,10 @@ class MySQLTodosRepository implements TodosRepositoryInterface
      */
     public function getById(int $id): ?Todo
     {
+        if ($this->repository && $this->repository->getById($id)) {
+            return $this->repository->getById($id);
+        }
+
         $queryBuilder = $this->connection->createQueryBuilder();
         $queryBuilder
             ->select('id', 'name')
@@ -74,6 +88,10 @@ class MySQLTodosRepository implements TodosRepositoryInterface
      */
     public function getByName(string $name): ?Todo
     {
+        if ($this->repository && $this->repository->getByName($name)) {
+            return $this->repository->getByName($name);
+        }
+
         $queryBuilder = $this->connection->createQueryBuilder();
         $queryBuilder
             ->select('id', 'name')

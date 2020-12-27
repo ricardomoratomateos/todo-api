@@ -25,7 +25,10 @@ class RepositoryFactory
     {
         switch ($repository) {
             case self::TODOS_REPOSITORY:
-                return new MySQLTodosRepository($this->connection);
+                return new MySQLTodosRepository(
+                    $this->connection,
+                    new InMemoryTodosRepository()
+                );
             default:
                 // TODO: Throw exception
                 return;
