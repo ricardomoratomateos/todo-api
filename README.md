@@ -43,3 +43,15 @@ $ composer test:coverage
 $ composer docker:stop
 $ composer docker:destroy
 ```
+
+# Extra
+
+### Check code styles
+```bash
+$ composer code:style
+```
+
+### Fix code styles
+```bash
+$ composer fix:code:style
+```
