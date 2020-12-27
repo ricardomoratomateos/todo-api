@@ -1,6 +1,6 @@
 <?php
 
-namespace TodoAPI\Infrastructure\Controllers\Todos;
+namespace TodoAPI\Infrastructure\Controllers\Todo;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;

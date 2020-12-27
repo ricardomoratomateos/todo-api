@@ -8,16 +8,15 @@ use TodoAPI\Infrastructure\Middlewares\NameValidator;
 
 $app->get('/health', Controllers\HealthController::class);
 
-// $app->group('/todos');
-$app->get('/todos', Controllers\Todos\ReadTodosController::class);
+$app->get('/todos', Controllers\Todo\ReadTodosController::class);
 $app
-    ->post('/todos', Controllers\Todos\CreateTodosController::class)
+    ->post('/todos', Controllers\Todo\CreateTodoController::class)
     ->add(new NameValidator());
 $app
-    ->put('/todos/{id}', Controllers\Todos\UpdateTodosController::class)
+    ->put('/todos/{id}', Controllers\Todo\UpdateTodoController::class)
     ->add(new IdValidator())
     ->add(new NameValidator());
-$app->delete('/todos/{id}', Controllers\Todos\DeleteTodosController::class);
+$app->delete('/todos/{id}', Controllers\Todo\DeleteTodoController::class);
 
 // Enable CORS for development purposes
 $app->options('/{routes:.+}', function (Request $request, Response $response, $args) {
