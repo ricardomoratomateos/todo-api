@@ -2,8 +2,6 @@
 
 namespace TodoAPI\Domain\Todos;
 
-use TodoAPI\Domain\Todos\Validations\TodosValidationsBuilder;
-
 class TodoServiceFactory
 {
     /** @var TodosRepositoryInterface $repository */
@@ -12,17 +10,12 @@ class TodoServiceFactory
     /** @var TodosStorageInterface $storage */
     protected $storage;
 
-    /** @var TodosValidationsBuilder $validationsBuilder */
-    protected $validationsBuilder;
-
     public function __construct(
         TodosRepositoryInterface $repository,
-        TodosStorageInterface $storage,
-        TodosValidationsBuilder $validationsBuilder
+        TodosStorageInterface $storage
     ) {
         $this->repository = $repository;
         $this->storage = $storage;
-        $this->validationsBuilder = $validationsBuilder;
     }
 
     public function make(string $class): AbstractTodoService
@@ -30,8 +23,7 @@ class TodoServiceFactory
         // TODO: Check if exists
         return new $class(
             $this->repository,
-            $this->storage,
-            $this->validationsBuilder
+            $this->storage
         );
     }
 }

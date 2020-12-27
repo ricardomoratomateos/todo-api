@@ -2,15 +2,14 @@
 
 namespace TodoAPI\Infrastructure\Handlers;
 
-use TodoAPI\Application\Todos\AbstractStorageTodosHandler;
-use TodoAPI\Application\Todos\CreateTodos\CreateTodosHandler;
-use TodoAPI\Application\Todos\DeleteTodos\DeleteTodosHandler;
+use TodoAPI\Application\Todos\AbstractWriterTodosHandler;
+use TodoAPI\Application\Todos\CreateTodo\CreateTodoHandler;
+use TodoAPI\Application\Todos\DeleteTodo\DeleteTodoHandler;
 use TodoAPI\Application\Todos\ReadTodos\ReadTodosHandler;
-use TodoAPI\Application\Todos\UpdateTodos\UpdateTodosHandler;
+use TodoAPI\Application\Todos\UpdateTodo\UpdateTodoHandler;
+use TodoAPI\Domain\Todos\TodoServiceFactory;
 use TodoAPI\Domain\Todos\TodosRepositoryInterface;
 use TodoAPI\Domain\Todos\TodosStorageInterface;
-use TodoAPI\Domain\Todos\Validations\TodosValidationsBuilder;
-use TodoAPI\Domain\Todos\Validations\TodosValidatorRepositoryInterface;
 use TodoAPI\Infrastructure\Repositories\RepositoryFactory;
 use TodoAPI\Infrastructure\Storages\StorageFactory;
 
@@ -47,25 +46,29 @@ class HandlerFactory
                 $repository = $this->repositoryFactory->make(RepositoryFactory::TODOS_REPOSITORY);
                 return new ReadTodosHandler($repository);
             case self::TODOS_CREATOR:
-                return $this->buildStorageHandler(CreateTodosHandler::class);
+                return $this->buildStorageHandler(CreateTodoHandler::class);
             case self::TODOS_UPDATER:
-                return $this->buildStorageHandler(UpdateTodosHandler::class);
+                return $this->buildStorageHandler(UpdateTodoHandler::class);
             case self::TODOS_DELETER:
-                return $this->buildStorageHandler(DeleteTodosHandler::class);
+                return $this->buildStorageHandler(DeleteTodoHandler::class);
             default:
                 // TODO: Throw exception
                 return;
         }
     }
 
-    private function buildStorageHandler(string $class): AbstractStorageTodosHandler
+    private function buildStorageHandler(string $class): AbstractWriterTodosHandler
     {
-      /** @var TodosStorageInterface $storage */
+        /** @var TodosStorageInterface $storage */
         $storage = $this->storageFactory->make(StorageFactory::TODOS_STORAGE);
-      /** @var TodosValidatorRepositoryInterface $validatorRepository */
-        $validatorRepository = $this->repositoryFactory->make(RepositoryFactory::TODOS_VALIDATIONS_REPOSITORY);
-        $validationsBuilder = new TodosValidationsBuilder($validatorRepository);
+        /** @var TodosRepositoryInterface $repository */
+        $repository = $this->repositoryFactory->make(RepositoryFactory::TODOS_REPOSITORY);
+        
+        $serviceFactory = new TodoServiceFactory(
+            $repository,
+            $storage
+        );
 
-        return new $class($storage, $validationsBuilder);
+        return new $class($serviceFactory);
     }
 }

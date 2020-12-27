@@ -4,8 +4,7 @@ namespace TodoAPI\Infrastructure\Controllers\Todos;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use TodoAPI\Application\Todos\CreateTodos\CreateTodosCommand;
-use TodoAPI\Domain\Todos\Todo;
+use TodoAPI\Application\Todos\CreateTodo\CreateTodoCommand;
 use TodoAPI\Infrastructure\Controllers\AbstractController;
 use TodoAPI\Infrastructure\Handlers\HandlerFactory;
 
@@ -15,8 +14,7 @@ class CreateTodosController extends AbstractController
     {
         $body = $request->getParsedBody();
 
-        $todo = new Todo(null, $body['name']);
-        $command = new CreateTodosCommand([$todo]);
+        $command = new CreateTodoCommand($body['name']);
 
         $handler = $this->handlerFactory->make(HandlerFactory::TODOS_CREATOR);
         $handler($command);

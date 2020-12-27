@@ -16,6 +16,6 @@ class SaveTodoService extends AbstractTodoService
             throw new ExistsTodoWithSameNameException();
         }
 
-        $this->storage->insert([$todo]);
+        $this->storage->insert([new Todo(null, $name)]);
     }
 }

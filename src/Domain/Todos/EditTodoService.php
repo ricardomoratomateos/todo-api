@@ -23,6 +23,6 @@ class EditTodoService extends AbstractTodoService
             throw new ExistsTodoWithSameNameException();
         }
 
-        $this->storage->update([$todo]);
+        $this->storage->update([new Todo($id, $name)]);
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace TodoAPI\Application\Todos\CreateTodos;
+namespace TodoAPI\Application\Todos\CreateTodo;
 
-class CreateTodosResponse
+class CreateTodoResponse
 {
     /** @var int $numberOfCreatedTodos */
     private $numberOfCreatedTodos;

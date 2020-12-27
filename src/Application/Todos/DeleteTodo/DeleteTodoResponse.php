@@ -1,8 +1,8 @@
 <?php
 
-namespace TodoAPI\Application\Todos\DeleteTodos;
+namespace TodoAPI\Application\Todos\DeleteTodo;
 
-class DeleteTodosResponse
+class DeleteTodoResponse
 {
     /** @var int $numberOfDeletedTodos */
     private $numberOfDeletedTodos;

@@ -1,8 +1,8 @@
 <?php
 
-namespace TodoAPI\Application\Todos\UpdateTodos;
+namespace TodoAPI\Application\Todos\UpdateTodo;
 
-class UpdateTodosResponse
+class UpdateTodoResponse
 {
     /** @var int $numberOfUpdatedTodos */
     private $numberOfUpdatedTodos;
